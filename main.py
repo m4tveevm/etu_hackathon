@@ -13,7 +13,7 @@ def get_events_around(lat='59.971374', lng=30.324618, radius='5', categories='')
     r = requests.get(
         f'https://spb-afisha.gate.petersburg.ru/kg/external/afisha/events',
         auth=('user', 'pass'), params=params)
-    return r.text
+    return r.json()['data']
 
 
 print(get_events_around())
