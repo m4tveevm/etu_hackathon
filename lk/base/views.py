@@ -7,17 +7,26 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
-
+from .models import UserProfile
 # from .models import Course, Lesson, Material, Task, TaskType
 from .logic import foreign_lk
 
 
 @login_required(login_url='login')
 def home(request):
-    items = [
-        {"title": "Название события", "price": '10', "place": '10', "tags": '1', "time": "time"}]
-    context = {"list_events": items}
-    return render(request, 'base/index.html', context=context)
+    try:
+        if not request.user.userprofile.etu_session_data:
+            items = [
+                {"title": "Название события", "price": '10', "place": '10', "tags": '1',
+                 "time": "time"}
+            ]
+            context = {"list_events": items}
+            return render(request, 'base/index.html', context=context)
+        else:
+            return redirect('admin/')
+    except UserProfile.DoesNotExist:
+        # Если у пользователя нет профиля, возможно, что-то пошло не так
+        return redirect('admin/')
 
 
 def loginPage(request):

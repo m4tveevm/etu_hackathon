@@ -82,11 +82,11 @@
     </div>
 
 
-    <div class="row">
-        <button class="btn btn-primary full-width" data-bs-toggle="modal"
-                data-bs-target="#filtersModal">Фильтры
-        </button>
-    </div>
+<!--    <div class="row">-->
+<!--        <button class="btn btn-primary full-width" data-bs-toggle="modal"-->
+<!--                data-bs-target="#filtersModal">Фильтры-->
+<!--        </button>-->
+<!--    </div>-->
 
 
     <div class="modal fade" id="filtersModal" tabindex="-1" aria-labelledby="filtersModalLabel"
@@ -290,9 +290,17 @@
             </div>
         </div>
     </div>
-
     <div class="main-content">
-        <h2 class="mb-4">Куда сегодня пойдем?</h2>
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h2 class="mb-4">Куда сегодня пойдем?</h2>
+            </div>
+            <div class="col-md-4 text-end">
+                <button class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#filtersModal">Фильтры
+                </button>
+            </div>
+        </div>
         <div class="row">
             <div class="event-grid d-flex justify-content-start flex-wrap">
                 {% for event in list_events %}
