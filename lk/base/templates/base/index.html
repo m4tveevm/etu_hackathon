@@ -6,12 +6,79 @@
 <!--    <link rel="stylesheet" type="text/css" href="style.css">-->
 
 <div class="container">
+    <style>
+        body {
+            background-color: #333; /* Темный фон страницы */
+            color: #fff; /* Белый текст */
+        }
 
+        .card {
+            background-color: #444; /* Темный фон карточек */
+            color: #fff; /* Белый текст карточек */
+        }
 
-    <div class="header pb-3 pt-3">
-        <button class="home-btn btn btn-primary ms-3">Домой</button>
-        <button class="login-btn btn btn-secondary me-3">Вход</button>
+        .btn-long {
+            display: block;
+            width: 100%; /* Makes the button extend the full width of the column */
+        }
 
+        .schedule-item {
+            border-bottom: 1px solid #555; /* Добавляем разделитель между элементами расписания */
+            padding-bottom: 10px; /* Немного отступа от границы */
+            margin-bottom: 10px; /* Отступ до следующего элемента расписания */
+        }
+    </style>
+    <div class="container my-3">
+        <h2 class="mb-4">Добрый день, {{user.name}}</h2>
+        <div class="row">
+            <!-- Расписание -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Понедельник, 15 апреля</h5>
+                        <p>4 пары, с 08:00 по 15:10</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">08:00 Физкультура <span
+                                    class="badge badge-primary">ПР</span></li>
+                            <li class="list-group-item">09:50 История России <span
+                                    class="badge badge-secondary">Лек</span></li>
+                            <li class="list-group-item">11:40 Информационные технологии <span
+                                    class="badge badge-secondary">Лек</span></li>
+                            <li class="list-group-item">13:40 Физика <span
+                                    class="badge badge-secondary">Лек</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Меню -->
+            <div class="col-md-8">
+                <div class="row justify-content-around">
+                    <a class="btn btn-secondary btn-md col-md-5" href="https://vec.etu.ru/moodle"><i
+                            class="fa-solid fa-laptop"></i> Moodle
+                    </a>
+                    <a class="btn btn-secondary btn-md col-md-5"
+                       href="https://digital.etu.ru/science/api/auth"><i
+                            class="fa-solid fa-briefcase"></i> Публикации
+                    </a>
+                    <a class="btn btn-secondary btn-md col-md-5"
+                       href="http://library.etu.ru/jirbis2"><i class="fa-solid fa-book"></i> ЭБС
+                    </a>
+                    <a class="btn btn-secondary btn-md col-md-5"
+                       href="https://lk.etu.ru/account/contacts/mail/student"><i
+                            class="fa-regular fa-envelope"></i> Почта
+                    </a>
+                    <a class="btn btn-secondary btn-md col-md-5" href="https://media.etu.ru/"><i
+                            class="fa-solid fa-play"></i> Медиатека
+                    </a>
+                    <a class="btn btn-secondary btn-md col-md-5"
+                       href="https://lk.etu.ru/student#/immortal-division-soldiers"><i
+                            class="fa-solid fa-user"></i> Бессмертный полк
+                    </a>
+
+                </div>
+            </div>
+        </div>
     </div>
 
 
@@ -224,25 +291,24 @@
         </div>
     </div>
 
-
     <div class="main-content">
+        <h2 class="mb-4">Куда сегодня пойдем?</h2>
         <div class="row">
             <div class="event-grid d-flex justify-content-start flex-wrap">
+                {% for event in list_events %}
                 <div class="event card m-2" style="width: 30%;">
                     <img src="https://w.forfun.com/fetch/5d/5d572d697e41c82ac511549420ebcf44.jpeg"
                          class="card-img-top"
                          alt="Event 1">
                     <div class="card-body">
-                        <h5 class="card-title">Название события 1</h5>
-                        <p class="card-text">Стоимость: {coast}₽</p>
-                        <p class="card-text">Время: 19:00</p>6
-                        <p class="card-text">Место: Концертный зал</p>
-                        <p class="card-text">Теги:</p>
-
+                        <h5 class="card-title">{{event.title}}</h5>
+                        <p class="card-text">Стоимость: {{ event.price }}</p>
+                        <p class="card-text">Время: {{ event.time }}</p>
+                        <p class="card-text">Место: {{ event.place }}</p>
+                        <p class="card-text">Теги: {{ event.tags }}</p>
                     </div>
                 </div>
-
-
+                {% endfor %}
             </div>
         </div>
 

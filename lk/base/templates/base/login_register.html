@@ -2,7 +2,9 @@
 {% block title %} Авторизация — LMS {% endblock %}
 {% block content %}
     {% load static %}
-    <link href="{% static 'css/signin.css' %}" rel="stylesheet">
+<!--todo тоже костыль без nginx-->
+<!--    <link href="{% static 'css/signin.css' %}" rel="stylesheet">-->
+<link rel="stylesheet" href="https://lms.updspace.com/static/css/signin.css">
     <main class="form-signin text-center">
         {% if page == 'login' %}
             <div class="h-100 p-5 bg-body-tertiary border rounded-3">
