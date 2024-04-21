@@ -134,7 +134,6 @@ class ETU_data_with_cookies():
             today_date = (datetime.datetime.now()).strftime('%Y-%m-%d')
 
             today_events = []
-
             for event in events:
                 event_date = event['start'][:10]
                 if event_date == today_date:

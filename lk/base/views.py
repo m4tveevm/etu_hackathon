@@ -12,11 +12,15 @@ from .logic import foreign_lk, kudago_api
 from .forms import UserProfileForm
 from django.shortcuts import render, redirect
 from .models import UserProfile
+import datetime
 
 
 @login_required(login_url='login')
 def home(request):
     try:
+        user_profile = request.user.userprofile
+        session_data = user_profile.etu_session_data
+        lessons = foreign_lk.ETU_data_with_cookies(session_data).timetable_checkin()
         items = [
             {"title": "Название события", "price": '10', "place": '10', "tags": '1',
              "time": "time",
@@ -25,7 +29,16 @@ def home(request):
              "time": "time",
              'maps': 'https://yandex.ru/maps/2/saint-petersburg/?mode=routes&rtext=~59.971716%2C30.321735'},
         ]
-        context = {"list_events": items}
+        answ = []
+        for lesson in lessons:
+            answ.append(
+                {"title": lesson['lesson']['title'], "start": lesson.get('start')[11:16],
+                 "end": lesson.get('end')[11:16],
+                 "s_type": lesson['lesson']['subjectType']})
+        if answ:
+            context = {"list_events": items, "schedule": answ, "time": datetime.datetime.now().strftime('%Y-%m-%d')}
+        else:
+            context = {"list_events": items, "time": datetime.datetime.now().strftime('%Y-%m-%d')}
         return render(request, 'base/index.html', context=context)
     except UserProfile.DoesNotExist:
         return redirect('profile/')

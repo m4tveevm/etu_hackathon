@@ -36,17 +36,15 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Понедельник, 15 апреля</h5>
-                        <p>4 пары, с 08:00 по 15:10</p>
+                        <h5 class="card-title">Расписание на {{time}}</h5>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">08:00 Физкультура <span
-                                    class="badge badge-primary">ПР</span></li>
-                            <li class="list-group-item">09:50 История России <span
-                                    class="badge badge-secondary">Лек</span></li>
-                            <li class="list-group-item">11:40 Информационные технологии <span
-                                    class="badge badge-secondary">Лек</span></li>
-                            <li class="list-group-item">13:40 Физика <span
-                                    class="badge badge-secondary">Лек</span></li>
+                            {% for lesson in schedule %}
+
+                            <li class="list-group-item">{{lesson.start}} - {{lesson.end}}
+                                {{lesson.title}}<span
+                                        class="badge badge-primary">{{lesson.s_type}}</span>
+                            </li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -413,8 +411,8 @@
                     'Content-Type': 'application/json'
                 }
             }).then(response => response.json())
-              .then(data => console.log(data))
-              .catch(error => console.error('Error:', error));
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error));
         }
 
 
