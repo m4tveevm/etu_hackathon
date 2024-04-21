@@ -110,8 +110,10 @@
                     <div class="mb-3">
                         <label class="form-label">Выбор района:</label>
                         <div id="area-popup" style="display: none;">
-                            <label for="Admiralteyskiy"><input type="checkbox" name="areas" id="Admiralteyskiy"
-                                                               value="Admiralteyskiy"> Адмиралтейский</label>
+                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" class="d-none" id="Admiralteyskiy" value="Admiralteyskiy">
+                                Адмиралтейский
+                            </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
                                 <input type="checkbox" class="d-none" id="Vasileostrovskiy" value="Vasileostrovskiy">
                                 Василеостровский
