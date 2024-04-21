@@ -23,7 +23,10 @@ def home(request):
             items = [
                 {"title": "Название события", "price": '10', "place": '10', "tags": '1',
                  "time": "time",
-                 'maps': 'https://yandex.ru/maps/2/saint-petersburg/?mode=routes&rtext=~59.971716%2C30.321735'}
+                 'maps': 'https://yandex.ru/maps/2/saint-petersburg/?mode=routes&rtext=~59.971716%2C30.321735'},
+                {"title": "Название события", "price": '10', "place": '10', "tags": '1',
+                 "time": "time",
+                 'maps': 'https://yandex.ru/maps/2/saint-petersburg/?mode=routes&rtext=~59.971716%2C30.321735'},
             ]
             context = {"list_events": items}
             return render(request, 'base/index.html', context=context)
