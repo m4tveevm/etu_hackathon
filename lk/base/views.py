@@ -8,7 +8,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from .models import UserProfile
-# from .models import Course, Lesson, Material, Task, TaskType
 from .logic import foreign_lk, kudago_api
 from .forms import UserProfileForm
 from django.shortcuts import render, redirect
@@ -18,22 +17,23 @@ from .models import UserProfile
 @login_required(login_url='login')
 def home(request):
     try:
-        if not request.user.userprofile.etu_session_data:
-
-            items = [
-                {"title": "Название события", "price": '10', "place": '10', "tags": '1',
-                 "time": "time",
-                 'maps': 'https://yandex.ru/maps/2/saint-petersburg/?mode=routes&rtext=~59.971716%2C30.321735'},
-                {"title": "Название события", "price": '10', "place": '10', "tags": '1',
-                 "time": "time",
-                 'maps': 'https://yandex.ru/maps/2/saint-petersburg/?mode=routes&rtext=~59.971716%2C30.321735'},
-            ]
-            context = {"list_events": items}
-            return render(request, 'base/index.html', context=context)
-        else:
-            return redirect('admin/')
+        items = [
+            {"title": "Название события", "price": '10', "place": '10', "tags": '1',
+             "time": "time",
+             'maps': 'https://yandex.ru/maps/2/saint-petersburg/?mode=routes&rtext=~59.971716%2C30.321735'},
+            {"title": "Название события", "price": '10', "place": '10', "tags": '1',
+             "time": "time",
+             'maps': 'https://yandex.ru/maps/2/saint-petersburg/?mode=routes&rtext=~59.971716%2C30.321735'},
+        ]
+        context = {"list_events": items}
+        return render(request, 'base/index.html', context=context)
     except UserProfile.DoesNotExist:
-        return redirect('lk_profile/')
+        return redirect('profile/')
+
+
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .forms import UserProfileForm
 
 
 @login_required
@@ -42,6 +42,7 @@ def lk_profile(request):
         form = UserProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Ваш профиль успешно обновлен.')
             return redirect('profile')
     else:
         form = UserProfileForm(instance=request.user.userprofile)
