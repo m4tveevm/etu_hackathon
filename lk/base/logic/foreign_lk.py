@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 class ETU_data():
     def __init__(self, login, password):
@@ -145,5 +146,5 @@ class ETU_data_with_cookies():
             print(f"Error retrieving notification: {e}")
             return 52
 
-# temp = ETU_data(login=os.getenv('login'), password=os.getenv('password'))
-# temper = ETU_data_with_cookies(temp.get_cookies())
+temp = ETU_data(login=os.getenv('login'), password=os.getenv('password'))
+temper = ETU_data_with_cookies(temp.get_cookies()).number_of_unread_messages()
