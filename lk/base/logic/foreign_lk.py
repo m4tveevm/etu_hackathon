@@ -87,7 +87,7 @@ class ETU_data():
             self.session.cookies.set(morsel.key, morsel.value, domain=morsel['domain'])
 
     def get_news(self):
-        news_link = f'https://lk.etu.ru/api/news?lang=ru'
+        news_link = 'https://lk.etu.ru/api/news?lang=ru'
         request = (self.session.get(news_link))
         print(f'TASK: {request.status_code} \n\n {request.json()}')
         return request.json()
@@ -144,7 +144,6 @@ class ETU_data_with_cookies():
         except Exception as e:
             print(f"Error retrieving notification: {e}")
             return 52
-
 
 # temp = ETU_data(login=os.getenv('login'), password=os.getenv('password'))
 # temper = ETU_data_with_cookies(temp.get_cookies())

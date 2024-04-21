@@ -9,7 +9,7 @@ from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from .models import UserProfile
 # from .models import Course, Lesson, Material, Task, TaskType
-from .logic import foreign_lk
+from .logic import foreign_lk, kudago_api
 
 
 @login_required(login_url='login')
@@ -18,14 +18,20 @@ def home(request):
         if not request.user.userprofile.etu_session_data:
             items = [
                 {"title": "Название события", "price": '10', "place": '10', "tags": '1',
-                 "time": "time"}
+                 "time": "time", 'maps' :'https://yandex.ru/maps/2/saint-petersburg/?mode=routes&rtext=~59.971716%2C30.321735'}
             ]
             context = {"list_events": items}
             return render(request, 'base/index.html', context=context)
         else:
             return redirect('admin/')
     except UserProfile.DoesNotExist:
-        return redirect('admin/')
+        return redirect('lk_profile/')
+
+
+@login_required(login_url='login')
+def lk_profile(request):
+    context = {"list_events": ''}
+    return render(request, 'base/index.html', context=context)
 
 
 def loginPage(request):

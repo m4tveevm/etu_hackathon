@@ -27,7 +27,7 @@ class UserProfile(models.Model):
     def get_password(self):
         """Расшифровать и вернуть пароль"""
         if self.etu_password_encrypted:
-            return cipher_suite.decrypt(self.etu_password_encrypted.encode()).decode()
+            return cipher.decrypt(self.etu_password_encrypted.encode()).decode()
         return None
 
     @staticmethod
