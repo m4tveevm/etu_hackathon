@@ -106,7 +106,9 @@
 
                     <!-- Фильтр по району -->
 
-                    <form method="POST" action="{% url 'filter_events' %}">
+<!--                    <form method="POST" action="{% url 'filter_events' %}">-->
+                        <form method="POST" action="">
+
                         {% csrf_token %}
                         <!-- Max Price Input -->
                         <div class="mb-3">
