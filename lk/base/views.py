@@ -18,7 +18,8 @@ def home(request):
         if not request.user.userprofile.etu_session_data:
             items = [
                 {"title": "Название события", "price": '10', "place": '10', "tags": '1',
-                 "time": "time", 'maps' :'https://yandex.ru/maps/2/saint-petersburg/?mode=routes&rtext=~59.971716%2C30.321735'}
+                 "time": "time",
+                 'maps': 'https://yandex.ru/maps/2/saint-petersburg/?mode=routes&rtext=~59.971716%2C30.321735'}
             ]
             context = {"list_events": items}
             return render(request, 'base/index.html', context=context)
