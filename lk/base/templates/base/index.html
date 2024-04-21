@@ -40,6 +40,7 @@
                         <h5 class="card-title">Понедельник, 15 апреля</h5>
                         <p>4 пары, с 08:00 по 15:10</p>
                         <ul class="list-group list-group-flush">
+
                             <li class="list-group-item">08:00 Физкультура <span
                                     class="badge badge-primary">ПР</span></li>
                             <li class="list-group-item">09:50 История России <span
@@ -105,7 +106,8 @@
 
                     <!-- Фильтр по району -->
 
-                    <form method="POST" action="{% url 'filter_events' %}">
+                        <form method="POST" action="">
+
                         {% csrf_token %}
                         <!-- Max Price Input -->
                         <div class="mb-3">
