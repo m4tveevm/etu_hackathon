@@ -28,7 +28,6 @@
             margin-bottom: 10px;
         }
 
-
     </style>
     <div class="container my-3">
         <h2 class="mb-4">Добрый день, {{request.user.first_name}}</h2>
@@ -40,7 +39,6 @@
                         <h5 class="card-title">Понедельник, 15 апреля</h5>
                         <p>4 пары, с 08:00 по 15:10</p>
                         <ul class="list-group list-group-flush">
-
                             <li class="list-group-item">08:00 Физкультура <span
                                     class="badge badge-primary">ПР</span></li>
                             <li class="list-group-item">09:50 История России <span
@@ -102,23 +100,16 @@
                             aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-
+                    <!-- Фильтр по максимальной стоимости -->
+                    <div class="mb-3">
+                        <label for="max-price" class="form-label">Максимальная цена:</label>
+                        <input type="number" class="form-control" id="max-price" min="0" value="0">
+                    </div>
 
                     <!-- Фильтр по району -->
-
-<!--                    <form method="POST" action="{% url 'filter_events' %}">-->
-                        <form method="POST" action="">
-
-                        {% csrf_token %}
-                        <!-- Max Price Input -->
-                        <div class="mb-3">
-                            <label for="max-price" class="form-label">Maximum Price:</label>
-                            <input type="number" name="max_price" id="max-price" class="form-control"
-                                   placeholder="Enter max price">
-                        </div>
-                        <!-- Areas Checkbox -->
-                        <div id="area-popup">
-                            <!-- List of checkboxes for areas -->
+                    <div class="mb-3">
+                        <label class="form-label">Выбор района:</label>
+                        <div id="area-popup" style="display: none;">
                             <label for="Admiralteyskiy"><input type="checkbox" name="areas" id="Admiralteyskiy"
                                                                value="Admiralteyskiy"> Адмиралтейский</label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
@@ -176,102 +167,107 @@
                                 <input type="checkbox" class="d-none" id="Vyborgskiy" value="Vyborgskiy"> Выборгский
                             </label>
 
-                            <!-- Repeat for other areas -->
                         </div>
-                        <!-- Фильтр по категориям -->
-                        <div class="mb-3">
-                            <label class="form-label">Категории:</label>
-                            <div id="category-popup" style="display: none;">
-                                <!-- Пример для категории "События для бизнеса" -->
-                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                    <input type="checkbox" class="d-none" name="category"
-                                           value="business-events">
-                                    События для бизнеса
-                                </label>
-                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                    <input type="checkbox" class="d-none" name="category"
-                                           value="cinema">
-                                    Кинопоказы
-                                </label>
-                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                    <input type="checkbox" class="d-none" name="category"
-                                           value="concert">
-                                    Концерты
-                                </label>
-                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                    <input type="checkbox" class="d-none" name="category"
-                                           value="education">
-                                    Обучение
-                                </label>
-                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                    <input type="checkbox" class="d-none" name="category"
-                                           value="entertainment">
-                                    Развлечения
-                                </label>
-                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                    <input type="checkbox" class="d-none" name="category"
-                                           value="exhibition">
-                                    Выставки
-                                </label>
-                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                    <input type="checkbox" class="d-none" name="category"
-                                           value="fashion">
-                                    Мода и стиль
-                                </label>
-                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                    <input type="checkbox" class="d-none" name="category"
-                                           value="festival">
-                                    Фестивали
-                                </label>
-                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                    <input type="checkbox" class="d-none" name="category"
-                                           value="holiday">
-                                    Праздники
-                                </label>
-                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                    <input type="checkbox" class="d-none" name="category" value="kids">
-                                    Детям
-                                </label>
-                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                    <input type="checkbox" class="d-none" name="category" value="other">
-                                    Разное
-                                </label>
-                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                    <input type="checkbox" class="d-none" name="category" value="party">
-                                    Вечеринки
-                                </label>
-                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                    <input type="checkbox" class="d-none" name="category" value="photo">
-                                    Фотография
-                                </label>
-                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                    <input type="checkbox" class="d-none" name="category" value="quest">
-                                    Квесты
-                                </label>
-                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                    <input type="checkbox" class="d-none" name="category"
-                                           value="recreation">
-                                    Активный отдых
-                                </label>
-                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                    <input type="checkbox" class="d-none" name="category"
-                                           value="shopping">
-                                    Шопинг (Магазины)
-                                </label>
-                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                    <input type="checkbox" class="d-none" name="category"
-                                           value="social-activity">
-                                    Благотворительность
-                                </label>
-                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                    <input type="checkbox" class="d-none" name="category" value="stock">
-                                    Акции и скидки
-                                </label>
+                    </div>
 
-                            </div>
-                            <!-- Добавьте другие категории -->
+                    <!-- Фильтр по категориям -->
+                    <div class="mb-3">
+                        <label class="form-label">Категории:</label>
+                        <div id="category-popup" style="display: none;">
+                            <!-- Пример для категории "События для бизнеса" -->
+                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" class="d-none"> События для бизнеса
+                            </label>
+
+                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" class="d-none" name="category"
+                                       value="business-events">
+                                События для бизнеса
+                            </label>
+                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" class="d-none" name="category"
+                                       value="cinema">
+                                Кинопоказы
+                            </label>
+                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" class="d-none" name="category"
+                                       value="concert">
+                                Концерты
+                            </label>
+                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" class="d-none" name="category"
+                                       value="education">
+                                Обучение
+                            </label>
+                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" class="d-none" name="category"
+                                       value="entertainment">
+                                Развлечения
+                            </label>
+                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" class="d-none" name="category"
+                                       value="exhibition">
+                                Выставки
+                            </label>
+                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" class="d-none" name="category"
+                                       value="fashion">
+                                Мода и стиль
+                            </label>
+                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" class="d-none" name="category"
+                                       value="festival">
+                                Фестивали
+                            </label>
+                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" class="d-none" name="category"
+                                       value="holiday">
+                                Праздники
+                            </label>
+                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" class="d-none" name="category" value="kids">
+                                Детям
+                            </label>
+                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" class="d-none" name="category" value="other">
+                                Разное
+                            </label>
+                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" class="d-none" name="category" value="party">
+                                Вечеринки
+                            </label>
+                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" class="d-none" name="category" value="photo">
+                                Фотография
+                            </label>
+                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" class="d-none" name="category" value="quest">
+                                Квесты
+                            </label>
+                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" class="d-none" name="category"
+                                       value="recreation">
+                                Активный отдых
+                            </label>
+                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" class="d-none" name="category"
+                                       value="shopping">
+                                Шопинг (Магазины)
+                            </label>
+                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" class="d-none" name="category"
+                                       value="social-activity">
+                                Благотворительность
+                            </label>
+                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" class="d-none" name="category" value="stock">
+                                Акции и скидки
+                            </label>
+
                         </div>
-                </form>
+                        <!-- Добавьте другие категории -->
+                    </div>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть
                     </button>
@@ -334,7 +330,6 @@
 
 
 
-
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -368,7 +363,7 @@
         }
 
         // You can call displaySelectedData() if needed elsewhere
-        function displaySelectedData() {
+        function displaySelectedData() {}
             // ... existing code to collect and log selected data ...
 
 
@@ -382,7 +377,7 @@
 
                 // Получить список выбранных категорий
                 const categoryCheckboxes = document.querySelectorAll('#category-popup input[type="checkbox"]:checked');
-                const selectedCategories = Array.from(categoryCheckboxes).map(checkbox => checkbox.name);
+                const selectedCategories = Array.from(categoryCheckboxes).map(checkbox => checkbox.value);
 
                 // Формирование JSON объекта с фильтрами
                 const filters = {
@@ -408,7 +403,6 @@
                 //   .catch(error => console.error('Error:', error));
             }
 
-        }
 
 
 
@@ -418,6 +412,5 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</div>
 </div>
 {% endblock content %}
