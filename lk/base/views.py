@@ -14,6 +14,16 @@ from .forms import UserProfileForm
 from django.shortcuts import render, redirect
 from .models import UserProfile
 
+from django.http import JsonResponse
+from django.views.decorators.http import require_http_methods
+from django.views.decorators.csrf import csrf_exempt
+import json
+
+
+
+
+
+
 
 @login_required(login_url='login')
 def home(request):
@@ -34,6 +44,25 @@ def home(request):
             return redirect('admin/')
     except UserProfile.DoesNotExist:
         return redirect('lk_profile/')
+
+
+
+
+@require_http_methods(["POST"])
+def apply_filters(request):
+    try:
+        data = json.loads(request.body)
+        # Обработка данных фильтрации
+        response_data = {
+            'status': 'success',
+            'message': 'Filters applied successfully',
+            'data': data  # Отправка обратно полученных данных для демонстрации
+        }
+        return JsonResponse(response_data)
+    except json.JSONDecodeError as e:
+        return JsonResponse({'status': 'error', 'message': 'Invalid JSON'}, status=400)
+
+
 
 
 @login_required
