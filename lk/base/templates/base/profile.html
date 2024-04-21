@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+{% block title %}Профиль — LK Assistant{% endblock %}
+{% block content %}
+<div class="container profile-page">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{{ user.userprofile.photo.url }}" alt="User Photo" class="img-thumbnail">
+        </div>
+        <div class="col-md-8">
+            <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+            <p>Email: {{ user.userprofile.etu_email }}</p>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-{% block title %} Авторизация — LMS {% endblock %}
+{% block title %} Авторизация — LK Assistant {% endblock %}
 {% block content %}
     {% load static %}
 <!--todo тоже костыль без nginx-->
@@ -11,7 +11,7 @@
                 <form method="POST" action="{% url 'login' %}">
                     {% csrf_token %}
                     <i class="d-block mx-auto mb-4 fa-solid fa-peace fa-logo" aria-hidden="true"></i>
-                    <h1 class="h3 mb-3 fw-normal">Вход в LMS</h1>
+                    <h1 class="h3 mb-3 fw-normal">Вход в LK</h1>
 
                     <div class="form-floating">
                         <input name="username" type="text" class="form-control" id="floatingInput"
@@ -37,7 +37,7 @@
                     <main>
                         <div class="text-center">
                             <i class="d-block mx-auto mb-4 fa-solid fa-peace fa-logo" aria-hidden="true"></i>
-                            <h2>Регистрация в LMS</h2>
+                            <h2>Регистрация в LK</h2>
                         </div>
                         <div class="row g-5">
                             <form method="POST" action="{% url 'register' %}">

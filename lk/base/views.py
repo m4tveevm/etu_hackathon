@@ -10,12 +10,16 @@ from django.core.exceptions import ValidationError
 from .models import UserProfile
 # from .models import Course, Lesson, Material, Task, TaskType
 from .logic import foreign_lk, kudago_api
+from .forms import UserProfileForm
+from django.shortcuts import render, redirect
+from .models import UserProfile
 
 
 @login_required(login_url='login')
 def home(request):
     try:
         if not request.user.userprofile.etu_session_data:
+
             items = [
                 {"title": "Название события", "price": '10', "place": '10', "tags": '1',
                  "time": "time",
@@ -29,10 +33,18 @@ def home(request):
         return redirect('lk_profile/')
 
 
-@login_required(login_url='login')
+@login_required
 def lk_profile(request):
-    context = {"list_events": ''}
-    return render(request, 'base/index.html', context=context)
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = UserProfileForm(instance=request.user.userprofile)
+
+    context = {'form': form}
+    return render(request, 'base/profile.html', context)
 
 
 def loginPage(request):
