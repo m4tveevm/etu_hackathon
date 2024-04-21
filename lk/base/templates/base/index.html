@@ -27,6 +27,8 @@
             padding-bottom: 10px;
             margin-bottom: 10px;
         }
+
+
     </style>
     <div class="container my-3">
         <h2 class="mb-4">Добрый день, {{request.user.first_name}}</h2>
@@ -82,11 +84,11 @@
     </div>
 
 
-<!--    <div class="row">-->
-<!--        <button class="btn btn-primary full-width" data-bs-toggle="modal"-->
-<!--                data-bs-target="#filtersModal">Фильтры-->
-<!--        </button>-->
-<!--    </div>-->
+    <!--    <div class="row">-->
+    <!--        <button class="btn btn-primary full-width" data-bs-toggle="modal"-->
+    <!--                data-bs-target="#filtersModal">Фильтры-->
+    <!--        </button>-->
+    <!--    </div>-->
 
 
     <div class="modal fade" id="filtersModal" tabindex="-1" aria-labelledby="filtersModalLabel"
@@ -103,135 +105,170 @@
 
                     <!-- Фильтр по району -->
 
-            <form method="POST" action="{% url 'filter_events' %}">
-                {% csrf_token %}
-                <!-- Max Price Input -->
-                <div class="mb-3">
-                    <label for="max-price" class="form-label">Maximum Price:</label>
-                    <input type="number" name="max_price" id="max-price" class="form-control" placeholder="Enter max price">
-                </div>
-                <!-- Areas Checkbox -->
-                <div id="area-popup">
-                    <!-- List of checkboxes for areas -->
-                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Адмиралтейский</label>
-                    <label><input type="checkbox" name="areas" value="Vasilieastrovskiy"> Василевстровсий</label>
-                    <label><input type="checkbox" name="areas" value="Petrogradskiy"> Петроградский</label>
-                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
-                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
-                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
-                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
-                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
-                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
-                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
-                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
-                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
-                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
-                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
-                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
-                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
-                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
-                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
-                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
-                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
-                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
-                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
-                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
-                    <!-- Repeat for other areas -->
-                </div>
-                    <!-- Фильтр по категориям -->
-                    <div class="mb-3">
-                        <label class="form-label">Категории:</label>
-                        <div id="category-popup" style="display: none;">
-                            <!-- Пример для категории "События для бизнеса" -->
+                    <form method="POST" action="{% url 'filter_events' %}">
+                        {% csrf_token %}
+                        <!-- Max Price Input -->
+                        <div class="mb-3">
+                            <label for="max-price" class="form-label">Maximum Price:</label>
+                            <input type="number" name="max_price" id="max-price" class="form-control"
+                                   placeholder="Enter max price">
+                        </div>
+                        <!-- Areas Checkbox -->
+                        <div id="area-popup">
+                            <!-- List of checkboxes for areas -->
+                            <label for="Admiralteyskiy"><input type="checkbox" name="areas" id="Admiralteyskiy"
+                                                               value="Admiralteyskiy"> Адмиралтейский</label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" name="category"
-                                       value="business-events">
-                                События для бизнеса
+                                <input type="checkbox" class="d-none" id="Vasileostrovskiy" value="Vasileostrovskiy">
+                                Василеостровский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" name="category"
-                                       value="cinema">
-                                Кинопоказы
+                                <input type="checkbox" class="d-none" id="Petrogradskiy" value="Petrogradskiy">
+                                Петроградский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" name="category"
-                                       value="concert">
-                                Концерты
+                                <input type="checkbox" class="d-none" id="Tsentralnyy" value="Tsentralnyy"> Центральный
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" name="category"
-                                       value="education">
-                                Обучение
+                                <input type="checkbox" class="d-none" id="Frunzenskiy" value="Frunzenskiy"> Фрунзенский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" name="category"
-                                       value="entertainment">
-                                Развлечения
+                                <input type="checkbox" class="d-none" id="Nevskiy" value="Nevskiy"> Невский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" name="category"
-                                       value="exhibition">
-                                Выставки
+                                <input type="checkbox" class="d-none" id="Moskovskiy" value="Moskovskiy"> Московский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" name="category"
-                                       value="fashion">
-                                Мода и стиль
+                                <input type="checkbox" class="d-none" id="Krasnogvardeyskiy" value="Krasnogvardeyskiy">
+                                Красногвардейский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" name="category"
-                                       value="festival">
-                                Фестивали
+                                <input type="checkbox" class="d-none" id="Kirovskiy" value="Kirovskiy"> Кировский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" name="category"
-                                       value="holiday">
-                                Праздники
+                                <input type="checkbox" class="d-none" id="Kolpinskiy" value="Kolpinskiy"> Колпинский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" name="category" value="kids">
-                                Детям
+                                <input type="checkbox" class="d-none" id="Krasnoselskiy" value="Krasnoselskiy">
+                                Красносельский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" name="category" value="other">
-                                Разное
+                                <input type="checkbox" class="d-none" id="Kronshtadtskiy" value="Kronshtadtskiy">
+                                Кронштадтский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" name="category" value="party">
-                                Вечеринки
+                                <input type="checkbox" class="d-none" id="Kurortnyy" value="Kurortnyy"> Курортный
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" name="category" value="photo">
-                                Фотография
+                                <input type="checkbox" class="d-none" id="Petrodvortsovy" value="Petrodvortsovy">
+                                Петродворцовый
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" name="category" value="quest">
-                                Квесты
+                                <input type="checkbox" class="d-none" id="Primorskiy" value="Primorskiy"> Приморский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" name="category"
-                                       value="recreation">
-                                Активный отдых
+                                <input type="checkbox" class="d-none" id="Pushkinskiy" value="Pushkinskiy"> Пушкинский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" name="category"
-                                       value="shopping">
-                                Шопинг (Магазины)
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" name="category"
-                                       value="social-activity">
-                                Благотворительность
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" name="category" value="stock">
-                                Акции и скидки
+                                <input type="checkbox" class="d-none" id="Vyborgskiy" value="Vyborgskiy"> Выборгский
                             </label>
 
+                            <!-- Repeat for other areas -->
                         </div>
-                        <!-- Добавьте другие категории -->
-                    </div>
-                </div>
+                        <!-- Фильтр по категориям -->
+                        <div class="mb-3">
+                            <label class="form-label">Категории:</label>
+                            <div id="category-popup" style="display: none;">
+                                <!-- Пример для категории "События для бизнеса" -->
+                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" class="d-none" name="category"
+                                           value="business-events">
+                                    События для бизнеса
+                                </label>
+                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" class="d-none" name="category"
+                                           value="cinema">
+                                    Кинопоказы
+                                </label>
+                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" class="d-none" name="category"
+                                           value="concert">
+                                    Концерты
+                                </label>
+                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" class="d-none" name="category"
+                                           value="education">
+                                    Обучение
+                                </label>
+                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" class="d-none" name="category"
+                                           value="entertainment">
+                                    Развлечения
+                                </label>
+                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" class="d-none" name="category"
+                                           value="exhibition">
+                                    Выставки
+                                </label>
+                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" class="d-none" name="category"
+                                           value="fashion">
+                                    Мода и стиль
+                                </label>
+                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" class="d-none" name="category"
+                                           value="festival">
+                                    Фестивали
+                                </label>
+                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" class="d-none" name="category"
+                                           value="holiday">
+                                    Праздники
+                                </label>
+                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" class="d-none" name="category" value="kids">
+                                    Детям
+                                </label>
+                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" class="d-none" name="category" value="other">
+                                    Разное
+                                </label>
+                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" class="d-none" name="category" value="party">
+                                    Вечеринки
+                                </label>
+                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" class="d-none" name="category" value="photo">
+                                    Фотография
+                                </label>
+                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" class="d-none" name="category" value="quest">
+                                    Квесты
+                                </label>
+                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" class="d-none" name="category"
+                                           value="recreation">
+                                    Активный отдых
+                                </label>
+                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" class="d-none" name="category"
+                                           value="shopping">
+                                    Шопинг (Магазины)
+                                </label>
+                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" class="d-none" name="category"
+                                           value="social-activity">
+                                    Благотворительность
+                                </label>
+                                <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
+                                    <input type="checkbox" class="d-none" name="category" value="stock">
+                                    Акции и скидки
+                                </label>
+
+                            </div>
+                            <!-- Добавьте другие категории -->
+                        </div>
+                </form>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть
                     </button>
@@ -291,6 +328,8 @@
             var popup = document.getElementById("category-popup");
             popup.style.display = popup.style.display === 'none' ? 'block' : 'none';
         }
+
+
 
 
     </script>
@@ -369,10 +408,13 @@
         }
 
 
+
+
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</div>
 </div>
 {% endblock content %}
