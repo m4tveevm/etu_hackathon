@@ -99,88 +99,45 @@
                             aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- Фильтр по максимальной стоимости -->
-                    <div class="mb-3">
-                        <label for="max-price" class="form-label">Максимальная цена:</label>
-                        <input type="number" class="form-control" id="max-price" min="0" value="0">
-                    </div>
+
 
                     <!-- Фильтр по району -->
-                    <div class="mb-3">
-                        <label class="form-label">Выбор района:</label>
-                        <div id="area-popup" style="display: none;">
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none"> Адмиралтейский
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none"> Василеостровский
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none"> Петроградский
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none"> Центральный
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none"> Фрунзенский
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none"> Невский
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none"> Московский
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none"> Красногвардейский
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none"> Кировский
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none"> Колпинский
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none"> Красносельский
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none"> Кронштадтский
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none"> Курортный
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none"> Петродворцовый
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none"> Приморский
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none"> Пушкинский
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none"> Выборгский
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none"> Невский
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none"> Фрунзенский
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none"> Центральный
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none"> Петроградский
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none"> Василеостровский
-                            </label>
-                            <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none"> Адмиралтейский
-                            </label>
-                        </div>
-                    </div>
 
+            <form method="POST" action="{% url 'filter_events' %}">
+                {% csrf_token %}
+                <!-- Max Price Input -->
+                <div class="mb-3">
+                    <label for="max-price" class="form-label">Maximum Price:</label>
+                    <input type="number" name="max_price" id="max-price" class="form-control" placeholder="Enter max price">
+                </div>
+                <!-- Areas Checkbox -->
+                <div id="area-popup">
+                    <!-- List of checkboxes for areas -->
+                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Адмиралтейский</label>
+                    <label><input type="checkbox" name="areas" value="Vasilieastrovskiy"> Василевстровсий</label>
+                    <label><input type="checkbox" name="areas" value="Petrogradskiy"> Петроградский</label>
+                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
+                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
+                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
+                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
+                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
+                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
+                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
+                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
+                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
+                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
+                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
+                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
+                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
+                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
+                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
+                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
+                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
+                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
+                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
+                    <label><input type="checkbox" name="areas" value="Admiralteyskiy"> Admiralteyskiy</label>
+                    <!-- Repeat for other areas -->
+                </div>
                     <!-- Фильтр по категориям -->
                     <div class="mb-3">
                         <label class="form-label">Категории:</label>
