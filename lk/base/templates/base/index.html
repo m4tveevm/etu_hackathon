@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-{% block title %} Афиша Событий {% endblock %}
+{% block title %} Assistant lk {% endblock %}
 
 {% block content %}
 {% load static %}
@@ -8,28 +8,28 @@
 <div class="container">
     <style>
         body {
-            background-color: #333; /* Темный фон страницы */
-            color: #fff; /* Белый текст */
+            background-color: #333;
+            color: #fff;
         }
 
         .card {
-            background-color: #444; /* Темный фон карточек */
-            color: #fff; /* Белый текст карточек */
+            background-color: #444;
+            color: #fff;
         }
 
         .btn-long {
             display: block;
-            width: 100%; /* Makes the button extend the full width of the column */
+            width: 100%;
         }
 
         .schedule-item {
-            border-bottom: 1px solid #555; /* Добавляем разделитель между элементами расписания */
-            padding-bottom: 10px; /* Немного отступа от границы */
-            margin-bottom: 10px; /* Отступ до следующего элемента расписания */
+            border-bottom: 1px solid #555;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
         }
     </style>
     <div class="container my-3">
-        <h2 class="mb-4">Добрый день, {{user.name}}</h2>
+        <h2 class="mb-4">Добрый день, {{request.user.first_name}}</h2>
         <div class="row">
             <!-- Расписание -->
             <div class="col-md-4">

@@ -7,9 +7,7 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="/" class="nav-link px-2 link-body-emphasis">Главная</a>
-                </li>
-                <li><a href="/course" class="nav-link px-2 link-body-emphasis">Курсы</a></li>
+                <li><a href="/" class="nav-link px-2 link-body-emphasis">Главная</a></li>
             </ul>
 
 
@@ -27,9 +25,7 @@
                 </a>
                 <ul class="dropdown-menu text-small" style="">
                     {% if request.user.is_authenticated %}
-                    <li><a class="dropdown-item" href="/course/">Задачи</a></li>
                     <li><a class="dropdown-item" href="#">Профиль LMS</a></li>
-                    <li><a class="dropdown-item" href="#">Задачи</a></li>
                     {% if request.user.is_superuser %}
                     <li><a class="dropdown-item" href="/admin">Админка</a></li>
                     {% endif %}

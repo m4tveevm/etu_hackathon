@@ -25,7 +25,6 @@ def home(request):
         else:
             return redirect('admin/')
     except UserProfile.DoesNotExist:
-        # Если у пользователя нет профиля, возможно, что-то пошло не так
         return redirect('admin/')
 
 
