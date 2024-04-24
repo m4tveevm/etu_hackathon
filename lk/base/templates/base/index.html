@@ -28,6 +28,7 @@
             margin-bottom: 10px;
         }
 
+
     </style>
     <div class="container my-3">
         <h2 class="mb-4">Добрый день, {{request.user.first_name}}</h2>
@@ -52,7 +53,7 @@
 
             <!-- Меню -->
             <div class="col-md-8">
-                <div class="row justify-content-around">
+                <div class="row justify-content-around" style="gap: 20px 10px;">
                     <a class="btn btn-secondary btn-md col-md-5" href="https://vec.etu.ru/moodle"><i
                             class="fa-solid fa-laptop"></i> Moodle
                     </a>
@@ -97,6 +98,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                 </div>
+
+                <form id="filters-form" method="post">
+                    {% csrf_token %}
                 <div class="modal-body">
                     <!-- Фильтр по максимальной стоимости -->
                     <div class="mb-3">
@@ -107,6 +111,7 @@
                     <!-- Фильтр по району -->
                     <div class="mb-3">
                         <label class="form-label">Выбор района:</label>
+
                         <div id="area-popup" style="display: none;">
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
                                 <input type="checkbox" class="d-none" id="Admiralteyskiy"
@@ -284,7 +289,10 @@
                         </div>
                         <!-- Добавьте другие категории -->
                     </div>
+
                 </div>
+
+                </form>>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть
                     </button>
@@ -359,6 +367,7 @@
             var popup = document.getElementById(popupId);
             var isDisplayed = popup.style.display === 'block';
             popup.style.display = isDisplayed ? 'none' : 'block';
+
         }
 
         function toggleCheckbox(label) {
@@ -380,42 +389,46 @@
 
         // You can call displaySelectedData() if needed elsewhere
 
+        function displaySelectedData() {}
+            // ... existing code to collect and log selected data ...
 
-        function applyFilters() {
-            // Получить максимальную стоимость
-            const maxPrice = document.getElementById('max-price').value;
 
-            // Получить список выбранных районов
-            const areaCheckboxes = document.querySelectorAll('#area-popup input[type="checkbox"]:checked');
-            const selectedAreas = Array.from(areaCheckboxes).map(checkbox => checkbox.parentElement.textContent.trim());
+            function applyFilters() {
+                // Получить максимальную стоимость
+                const maxPrice = document.getElementById('max-price').value;
 
-            // Получить список выбранных категорий
-            const categoryCheckboxes = document.querySelectorAll('#category-popup input[type="checkbox"]:checked');
-            const selectedCategories = Array.from(categoryCheckboxes).map(checkbox => checkbox.value);
+                // Получить список выбранных районов
+                const areaCheckboxes = document.querySelectorAll('#area-popup input[type="checkbox"]:checked');
+                const selectedAreas = Array.from(areaCheckboxes).map(checkbox => checkbox.parentElement.textContent.trim());
 
-            // Формирование JSON объекта с фильтрами
-            const filters = {
-                maxPrice: maxPrice,
-                areas: selectedAreas,
-                categories: selectedCategories
-            };
+                // Получить список выбранных категорий
+                const categoryCheckboxes = document.querySelectorAll('#category-popup input[type="checkbox"]:checked');
+                const selectedCategories = Array.from(categoryCheckboxes).map(checkbox => checkbox.value);
 
-            // Преобразование объекта в строку JSON для передачи или логирования
-            const filtersJSON = JSON.stringify(filters);
-            console.log(filtersJSON);
+                // Формирование JSON объекта с фильтрами
+                const filters = {
+                    maxPrice: maxPrice,
+                    areas: selectedAreas,
+                    categories: selectedCategories
+                };
 
-            fetch('/apply-filters', {
-                method: "POST",
-                body: filtersJSON,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(response => response.json())
-                .then(data => console.log(data))
-                .catch(error => console.error('Error:', error));
+                // Преобразование объекта в строку JSON для передачи или логирования
+                const filtersJSON = JSON.stringify(filters);
+                console.log(filtersJSON);
+                const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+                fetch('/apply-filters', {
+        method: "POST",
+        body: filtersJSON,
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
         }
-
-
+    })
+    .then(response => response.json())
+    .then(data => console.log('Received data:', data))
+    .catch(error => console.error('Error:', error));
+            }
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

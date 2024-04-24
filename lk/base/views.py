@@ -14,6 +14,16 @@ from django.shortcuts import render, redirect
 from .models import UserProfile
 import datetime
 
+from django.http import JsonResponse
+from django.views.decorators.http import require_http_methods
+from django.views.decorators.csrf import csrf_exempt
+import json
+
+
+
+
+
+
 
 @login_required(login_url='login')
 def home(request):
@@ -47,6 +57,25 @@ def home(request):
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import UserProfileForm
+
+
+
+
+@require_http_methods(["POST"])
+def apply_filters(request):
+    try:
+        data = json.loads(request.body)
+        # Обработка данных фильтрации
+        response_data = {
+            'status': 'success',
+            'message': 'Filters applied successfully',
+            'data': data  # Отправка обратно полученных данных для демонстрации
+        }
+        return JsonResponse(response_data)
+    except json.JSONDecodeError as e:
+        return JsonResponse({'status': 'error', 'message': 'Invalid JSON'}, status=400)
+
+
 
 
 @login_required

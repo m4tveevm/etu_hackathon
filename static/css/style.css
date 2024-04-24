@@ -15,6 +15,7 @@ body {
 }
 
 .header button {
+    display: grid;
     background-color: #0076ff;
     border: none;
     padding: 10px 20px;
