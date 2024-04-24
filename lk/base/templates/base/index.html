@@ -37,17 +37,15 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Понедельник, 15 апреля</h5>
-                        <p>4 пары, с 08:00 по 15:10</p>
+                        <h5 class="card-title">Расписание на {{time}}</h5>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">08:00 Физкультура <span
-                                    class="badge badge-primary">ПР</span></li>
-                            <li class="list-group-item">09:50 История России <span
-                                    class="badge badge-secondary">Лек</span></li>
-                            <li class="list-group-item">11:40 Информационные технологии <span
-                                    class="badge badge-secondary">Лек</span></li>
-                            <li class="list-group-item">13:40 Физика <span
-                                    class="badge badge-secondary">Лек</span></li>
+                            {% for lesson in schedule %}
+
+                            <li class="list-group-item">{{lesson.start}} - {{lesson.end}}
+                                {{lesson.title}}<span
+                                        class="badge badge-primary">{{lesson.s_type}}</span>
+                            </li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -116,62 +114,79 @@
 
                         <div id="area-popup" style="display: none;">
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" id="Admiralteyskiy" value="Admiralteyskiy">
+                                <input type="checkbox" class="d-none" id="Admiralteyskiy"
+                                       value="Admiralteyskiy">
                                 Адмиралтейский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" id="Vasileostrovskiy" value="Vasileostrovskiy">
+                                <input type="checkbox" class="d-none" id="Vasileostrovskiy"
+                                       value="Vasileostrovskiy">
                                 Василеостровский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" id="Petrogradskiy" value="Petrogradskiy">
+                                <input type="checkbox" class="d-none" id="Petrogradskiy"
+                                       value="Petrogradskiy">
                                 Петроградский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" id="Tsentralnyy" value="Tsentralnyy"> Центральный
+                                <input type="checkbox" class="d-none" id="Tsentralnyy"
+                                       value="Tsentralnyy"> Центральный
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" id="Frunzenskiy" value="Frunzenskiy"> Фрунзенский
+                                <input type="checkbox" class="d-none" id="Frunzenskiy"
+                                       value="Frunzenskiy"> Фрунзенский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" id="Nevskiy" value="Nevskiy"> Невский
+                                <input type="checkbox" class="d-none" id="Nevskiy" value="Nevskiy">
+                                Невский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" id="Moskovskiy" value="Moskovskiy"> Московский
+                                <input type="checkbox" class="d-none" id="Moskovskiy"
+                                       value="Moskovskiy"> Московский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" id="Krasnogvardeyskiy" value="Krasnogvardeyskiy">
+                                <input type="checkbox" class="d-none" id="Krasnogvardeyskiy"
+                                       value="Krasnogvardeyskiy">
                                 Красногвардейский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" id="Kirovskiy" value="Kirovskiy"> Кировский
+                                <input type="checkbox" class="d-none" id="Kirovskiy"
+                                       value="Kirovskiy"> Кировский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" id="Kolpinskiy" value="Kolpinskiy"> Колпинский
+                                <input type="checkbox" class="d-none" id="Kolpinskiy"
+                                       value="Kolpinskiy"> Колпинский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" id="Krasnoselskiy" value="Krasnoselskiy">
+                                <input type="checkbox" class="d-none" id="Krasnoselskiy"
+                                       value="Krasnoselskiy">
                                 Красносельский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" id="Kronshtadtskiy" value="Kronshtadtskiy">
+                                <input type="checkbox" class="d-none" id="Kronshtadtskiy"
+                                       value="Kronshtadtskiy">
                                 Кронштадтский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" id="Kurortnyy" value="Kurortnyy"> Курортный
+                                <input type="checkbox" class="d-none" id="Kurortnyy"
+                                       value="Kurortnyy"> Курортный
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" id="Petrodvortsovy" value="Petrodvortsovy">
+                                <input type="checkbox" class="d-none" id="Petrodvortsovy"
+                                       value="Petrodvortsovy">
                                 Петродворцовый
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" id="Primorskiy" value="Primorskiy"> Приморский
+                                <input type="checkbox" class="d-none" id="Primorskiy"
+                                       value="Primorskiy"> Приморский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" id="Pushkinskiy" value="Pushkinskiy"> Пушкинский
+                                <input type="checkbox" class="d-none" id="Pushkinskiy"
+                                       value="Pushkinskiy"> Пушкинский
                             </label>
                             <label class="btn btn-outline-secondary" onclick="toggleCheckbox(this)">
-                                <input type="checkbox" class="d-none" id="Vyborgskiy" value="Vyborgskiy"> Выборгский
+                                <input type="checkbox" class="d-none" id="Vyborgskiy"
+                                       value="Vyborgskiy"> Выборгский
                             </label>
 
                         </div>
@@ -339,8 +354,6 @@
         }
 
 
-
-
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -375,6 +388,7 @@
         }
 
         // You can call displaySelectedData() if needed elsewhere
+
         function displaySelectedData() {}
             // ... existing code to collect and log selected data ...
 
@@ -415,7 +429,6 @@
     .then(data => console.log('Received data:', data))
     .catch(error => console.error('Error:', error));
             }
-
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
