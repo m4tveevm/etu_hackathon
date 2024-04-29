@@ -32,9 +32,9 @@ jobs:
         run: |
           if [ -f requirements/testing.txt ]; then pip install -r requirements/testing.txt; fi
       - name: Run migrations
-        run: python manage.py migrate
+        run: python lk/manage.py migrate
       - name: Run tests
-        run: python manage.py test
+        run: python lk/manage.py test
       - name: Run flake8
         run: flake8 .
       - name: Run black
