@@ -1,1 +1,3 @@
 # Add testing libraries such as pytest, factory_boy, etc.
+flake8==7.0.0
+black==24.4.2
