@@ -1,8 +1,9 @@
 asgiref==3.8.1
+BeautifulSoup==4.12.3
+cryptography==42.0.5
 Django==4.2.4
 Pillow==10.3.0
 requests==2.31.0
 sqlparse==0.5.0
 django-debug-toolbar==4.3.0
 python-dotenv==1.0.1
-cryptography==42.0.5
