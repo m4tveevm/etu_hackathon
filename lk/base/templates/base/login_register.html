@@ -1,0 +1,88 @@
+{% extends 'main.html' %}
+{% block title %} Авторизация — LK Assistant {% endblock %}
+{% block content %}
+    {% load static %}
+<!--todo тоже костыль без nginx-->
+<!--    <link href="{% static 'css/signin.css' %}" rel="stylesheet">-->
+<link rel="stylesheet" href="https://lms.updspace.com/static/css/signin.css">
+    <main class="form-signin text-center">
+        {% if page == 'login' %}
+            <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+                <form method="POST" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <i class="d-block mx-auto mb-4 fa-solid fa-peace fa-logo" aria-hidden="true"></i>
+                    <h1 class="h3 mb-3 fw-normal">Вход в LK</h1>
+
+                    <div class="form-floating">
+                        <input name="username" type="text" class="form-control" id="floatingInput"
+                               placeholder="Enter Username" autocomplete="username">
+                        <label for="floatingInput">Имя пользователя</label>
+                    </div>
+                    <div class="form-floating">
+                        <input name="password" type="password" class="form-control" id="floatingPassword"
+                               placeholder="Enter password" autocomplete="current-password">
+                        <label for="floatingPassword">Пароль</label>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button class="w-100 btn btn-lg btn-primary" type="submit">Войти</button>
+                        <a href="{% url 'register' %}" class="w-100 btn btn-lg btn btn-secondary">Зарегистрироваться</a>
+                    </div>
+                </form>
+            </div>
+            </main>
+
+        {% else %}
+            <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+                <div class="container">
+                    <main>
+                        <div class="text-center">
+                            <i class="d-block mx-auto mb-4 fa-solid fa-peace fa-logo" aria-hidden="true"></i>
+                            <h2>Регистрация в LK</h2>
+                        </div>
+                        <div class="row g-5">
+                            <form method="POST" action="{% url 'register' %}">
+                                {% csrf_token %}
+                                <div class="row g-3">
+                                    <div class="col-sm-6">
+                                        <label for="firstName" class="form-label">Имя</label>
+                                        <input name="firstName" type="text" class="form-control" id="firstName"
+                                               autocomplete="given-name">
+                                        <div class="invalid-feedback">Обязательно заполните поле Имени!</div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label for="lastName" class="form-label">Фамилия</label>
+                                        <input name="lastName" type="text" class="form-control" id="lastName"
+                                               autocomplete="family-name">
+                                        <div class="invalid-feedback">Обязательно заполните поле Фамилии!</div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="username" class="form-label">Username</label>
+                                        <div class="input-group has-validation">
+                                            <span class="input-group-text">@</span>
+                                            <input name="username" type="text" class="form-control" id="username"
+                                                   autocomplete="username">
+                                            <div class="invalid-feedback">Обязательно заполните поле Username!</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="password" class="form-label">Пароль</label>
+                                        <input name="password" type="password" class="form-control" id="password"
+                                               autocomplete="new-password">
+                                        <div class="invalid-feedback">Обязательно заполните поле пароля!</div>
+                                    </div>
+                                    <hr class="my-4">
+                                    <button class="w-100 btn btn-primary btn-lg" type="submit">Зарегистрироваться
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </main>
+                    <p class="mb-1 text-body-secondary text-center text-small">Уже зарегистрированны? <a
+                            href="{% url 'login' %}">Войти</a></p>
+                </div>
+            </div>
+        {% endif %}
+{% endblock content %}

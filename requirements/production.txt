@@ -1,0 +1,3 @@
+# The production database adapter, e.g. psycopg2 for PostgreSQL
+# WSGI server like gunicorn
+# Any performance monitoring tools

@@ -1,0 +1,45 @@
+<header class="p-3 mb-3 border-bottom">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/"
+               class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+                <i class="fa-solid fa-peace" style="font-size: 30px;"></i>
+            </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/" class="nav-link px-2 link-body-emphasis">Главная</a></li>
+            </ul>
+
+
+            <div class="dropdown text-end">
+
+                <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                    {% if request.user.is_authenticated %}
+                        <span>Hi, {{ request.user.first_name }}!</span>
+                    {% endif %}
+                    {% load static %}
+                    <img src="{% static '/img/blank_profile.png' %}" alt="profile photo" width="32"
+                         height="32"
+                         class="rounded-circle">
+                </a>
+                <ul class="dropdown-menu text-small" style="">
+                    {% if request.user.is_authenticated %}
+                        <li><a class="dropdown-item" href="/profile">Профиль LK</a></li>
+                        {% if request.user.is_superuser %}
+                            <li><a class="dropdown-item" href="/admin">Админка</a></li>
+                        {% endif %}
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">Выйти</a></li>
+                    {% else %}
+                        {# <a href="{% url 'register' %}">Register</a>#}
+                        <li><a class="dropdown-item" href="{% url 'login' %}">Авторизация</a></li>
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
