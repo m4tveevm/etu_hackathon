@@ -8,8 +8,6 @@ from cryptography.fernet import Fernet
 key = Fernet.generate_key()
 cipher = Fernet(key)
 
-from django.db import models
-
 
 class Event(models.Model):
     name = models.CharField(max_length=100)
@@ -24,10 +22,12 @@ class Event(models.Model):
 # Create your models here.
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    photo = models.ImageField(upload_to='profiles/',
-                              default='https://lms.updspace.com/static/img/blank_profile.png')
+    photo = models.ImageField(
+        upload_to="profiles/",
+        default="https://lms.updspace.com/static/img/blank_profile.png",
+    )
     # todo: Обратить внимание на костыль без Nginx! /\
-    etu_session_data = models.TextField(default='', blank=True)
+    etu_session_data = models.TextField(default="", blank=True)
     etu_email = models.EmailField()
     etu_password_encrypted = models.CharField(max_length=255, blank=True, null=True)
 

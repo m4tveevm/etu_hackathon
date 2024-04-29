@@ -16,7 +16,7 @@
                 <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
                    data-bs-toggle="dropdown" aria-expanded="false">
                     {% if request.user.is_authenticated %}
-                    <span>Hi, {{ request.user.first_name }}!</span>
+                        <span>Hi, {{ request.user.first_name }}!</span>
                     {% endif %}
                     {% load static %}
                     <img src="{% static '/img/blank_profile.png' %}" alt="profile photo" width="32"
@@ -25,17 +25,17 @@
                 </a>
                 <ul class="dropdown-menu text-small" style="">
                     {% if request.user.is_authenticated %}
-                    <li><a class="dropdown-item" href="/profile">Профиль LMS</a></li>
-                    {% if request.user.is_superuser %}
-                    <li><a class="dropdown-item" href="/admin">Админка</a></li>
-                    {% endif %}
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="{% url 'logout' %}">Выйти</a></li>
+                        <li><a class="dropdown-item" href="/profile">Профиль LK</a></li>
+                        {% if request.user.is_superuser %}
+                            <li><a class="dropdown-item" href="/admin">Админка</a></li>
+                        {% endif %}
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">Выйти</a></li>
                     {% else %}
-                    {# <a href="{% url 'register' %}">Register</a>#}
-                    <li><a class="dropdown-item" href="{% url 'login' %}">Авторизация</a></li>
+                        {# <a href="{% url 'register' %}">Register</a>#}
+                        <li><a class="dropdown-item" href="{% url 'login' %}">Авторизация</a></li>
                     {% endif %}
 
                 </ul>
